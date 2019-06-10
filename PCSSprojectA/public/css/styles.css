@@ -1,0 +1,100 @@
+html,body {
+  height: 100%;
+}
+
+body {
+  background-color: white;
+}
+
+p, h1{
+  font-family: 'Lato', sans-serif;
+}
+
+.container-fluid{
+  padding: 3% 5%;
+}
+
+.img-center{
+  text-align: center;
+}
+
+.logo-upper{
+  width: 60%;
+  height: auto;
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+
+.logo-lower{
+  width: 20%;
+  height: auto;
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+
+.title{
+}
+
+.song-title{
+  font-family: 'Lato', sans-serif;
+  font-size: 50px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.control-buttons{
+  height: 100px;
+  width: 320px;
+  margin: 2px;
+  font-size: 29px;
+}
+
+.button-polish, .button-english{
+  width: auto;
+  height: auto;
+  margin: 2px;
+  margin-top: 20px;
+  background-size: cover;
+}
+
+.polish-logo, .english-logo{
+  height: 150px;
+  width: 200px;
+}
+
+.language-choice-text{
+  font-size: 40px;
+  margin-bottom: 0;
+}
+
+.help-text{
+  display:none;
+}
+
+.language-choice{
+  margin-top: 50px;
+}
+
+/* 404 */
+
+.page-404{
+  font-size: 50px;
+  font-family: 'Lato', sans-serif;
+}
+
+
+
+/* Footer */
+
+#footer{
+  text-align: center;
+  background-color: white;
+}
+
+.copyright-footer{
+  padding: 0% 5% 5% 5%;
+}
+
+.iconsFooter{
+  padding: 5% 1% 2% 1%;
+}

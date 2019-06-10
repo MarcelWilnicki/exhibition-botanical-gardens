@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pl" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Wystawa - Wybór Języka</title>
+    <link rel="shortcut icon" href="/images/favicon.png">
+
+    <!-- CSS stylesheets -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/styles.css">
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12 col-sm-12 img-center language-choice">
+          <p class="language-choice-text" lang="pl">Wybór Języka</p>
+          <p class="language-choice-text" lang="en">Language Choice</p>
+        </div>
+        <div class="col-lg-12 col-sm-12 img-center">
+          <button id="set_polish_butt" onclick="moveToPolish()" class="btn btn-dark btn-lg rounded-0 button-polish" aria-describedby="change-to-polish-explanation" lang="pl"><img src="/images/polish.png" class="polish-logo"/></button>
+          <button id="set_english_butt" onclick="moveToEnglish()" class="btn btn-dark btn-lg rounded-0 button-english" aria-describedby="change-to-english-explanation" lang="en"><img src="/images/english.png" class="english-logo"/></button>
+
+          <span id="change-to-polish-explanation" class="help-text" lang="pl">Polski</span>
+          <span id="change-to-english-explanation" class="help-text" lang="en">English</span>
+
+        </div>
+      </div>
+    </div>
+
+    <footer id="footer">
+      <p class="copyright-footer" aria-hidden="true">Poznań Supercomputing and Networking Center <br />Copyright © 2019</p>
+    </footer>
+
+
+    <script type="text/javascript">
+
+    var url = window.location.href;
+
+    if(url.slice(-1) == '/'){
+      url = url + 'language/1';
+    }
+
+    if(url.charAt(url.length-2) == '/'){
+      var lastCharacter = url.charAt(url.length-1);
+    } else if (url.charAt(url.length-3) == '/'){
+      var lastCharacter = url.substring(url.length - 2, url.length);
+      var lastCharacter = lastCharacter.substring(0,2);
+    } else {
+      null;
+    }
+
+    function moveToEnglish(){
+      window.location.href = "/en/" + lastCharacter;
+    };
+
+    function moveToPolish(){
+      window.location.href = "/pl/" + lastCharacter;
+    }
+
+    $(function () {
+
+      var english_page = 'en';
+      var polish_page = 'pl';
+
+      if ($.cookie('language') != null) {
+          if (window.location.href != '/' + $.cookie('language') + '/' + lastCharacter) {
+              window.location.href = '/' + $.cookie('language') + '/' + lastCharacter;
+          }
+      }
+
+      $('#set_english_butt').click(function () {
+          $.cookie('language', english_page, { expires: 24 * 60 * 60 * 1000, path: '/' });
+      });
+
+      $('#set_polish_butt').click(function () {
+          $.cookie('language', polish_page, { expires: 24 * 60 * 60 * 1000, path: '/' });
+      });
+    });
+
+    </script>
+  </body>
+</html>

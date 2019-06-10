@@ -1,0 +1,125 @@
+<button class="btn btn-dark btn-lg control-buttons" onClick="play()"> Play Recording</button>
+<button class="btn btn-dark btn-lg control-buttons" onClick="pause()"> Stop Recording</button>
+<button class="btn btn-dark btn-lg control-buttons" onClick="playAgain()"> Repeat Recording</button>
+<button class="btn btn-dark btn-lg control-buttons" onClick="moveToNext()">Next Stand</button>
+<button class="btn btn-dark btn-lg control-buttons" onClick="moveToPrevious()">Return to Introduction</button>
+
+
+</div>
+</div>
+</div>
+
+<div class="container-fluid">
+<div class="row">
+<div class="col-lg-12 col-sm-12 img-center">
+
+  <p class="language-choice-text" lang="pl">wybór języka</p>
+  <p class="language-choice-text" lang="en">language choice</p>
+  <button id="set_polish_butt" onclick="moveToPolish()" class="btn btn-dark btn-lg rounded-0 button-polish" aria-describedby="change-to-polish-explanation" lang="pl"><img src="/images/polish.png" class="polish-logo"/></button>
+  <button id="set_english_butt" onclick="moveToEnglish()" class="btn btn-dark btn-lg rounded-0 button-english" aria-describedby="change-to-english-explanation" lang="en"><img src="/images/english.png" class="english-logo"/></button>
+
+</div>
+</div>
+</div>
+
+<span id="change-to-polish-explanation" class="help-text" lang="pl">Polski</span>
+<span id="change-to-english-explanation" class="help-text" lang="en">English</span>
+
+<footer id="footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 col-sm-12">
+        <img src="/images/ERASMUS.jpg" class="logo-lower" aria-hidden="true" />
+        <img src="/images/OGRODY.jpg" class="logo-lower" aria-hidden="true" />
+        <img src="/images/UAM_EN.jpg" class="logo-lower" aria-hidden="true" />
+        <img src="/images/PSNC.png" class="logo-lower" aria-hidden="true" />
+      </div>
+
+    </div>
+
+  </div>
+<p class="copyright-footer" aria-hidden="true">Poznań Supercomputing and Networking Center <br />Copyright © 2019</p>
+</footer>
+
+
+
+<script type="text/javascript">
+var song = document.getElementById('audio');
+var url = window.location.href;
+
+if(url.slice(-1) != '/'){
+  var url = url + '/';
+}
+
+if(url.charAt(url.length-3) == '/'){
+  var lastCharacter = url.charAt(url.length-2);
+  var language = url.substring(url.length - 5, url.length);
+  var language = language.substring(0, 2);
+} else if (url.charAt(url.length-4) == '/'){
+  var lastCharacter = url.substring(url.length - 3, url.length);
+  var lastCharacter = lastCharacter.substring(0,2);
+  var language = url.substring(url.length - 6, url.length);
+  var language = language.substring(0, 2);
+}
+
+
+function play() {
+  song.play();
+}
+
+function pause() {
+  song.pause();
+}
+
+function playAgain() {
+  if (song.paused) {
+    song.currentTime = 0;
+    song.play();
+  } else {
+    song.currentTime = 0;
+    song.play();
+  }
+}
+
+$('#set_polish_butt').click(function() {
+  $.cookie('language', 'pl', {
+    expires: 24 * 60 * 60 * 1000,
+    path: '/'
+  });
+});
+
+$('#set_english_butt').click(function() {
+  $.cookie('language', 'en', {
+    expires: 24 * 60 * 60 * 1000,
+    path: '/'
+  });
+});
+
+function moveToNext() {
+  var currentStand = parseInt(lastCharacter, 10);
+  if (currentStand < 13) {
+    var nextStand = currentStand + 1;
+    window.location.href = '/' + language + '/' + nextStand;
+  }
+}
+
+function moveToPrevious() {
+  var currentStand = parseInt(lastCharacter, 10);
+  if (currentStand != 1) {
+    var previousStand = currentStand - 1;
+    window.location.href = '/' + language + '/' + previousStand;
+  }
+}
+
+function moveToPolish() {
+  window.location.href = "/pl/" + lastCharacter;
+}
+
+function moveToEnglish() {
+  window.location.href = "/en/" + lastCharacter;
+}
+
+</script>
+</body>
+
+</html>
